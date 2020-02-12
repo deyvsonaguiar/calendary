@@ -51,9 +51,11 @@ document.addEventListener('DOMContentLoaded', function() {
         select: function(event) {
             alert('Event Select');
         },
+        events: routeEvents('routeLoadEvents'),
 
     });
 
     calendar.render();
 
 });
+
