@@ -8,7 +8,7 @@
         <link href='{{ asset('assets/fullcalendar/packages/timegrid/main.css') }}' rel='stylesheet' />
         <link href='{{ asset('assets/fullcalendar/packages/list/main.css') }}' rel='stylesheet' />
         <link href='{{ asset('assets/fullcalendar/css/style.css') }}' rel='stylesheet' />
-
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
   <div id='wrap'>
@@ -30,7 +30,10 @@
       </p>
     </div>
 
-<div id='calendar' data-route-load-events="{{ route('routeLoadEvents') }}"></div>
+<div id='calendar'
+    data-route-load-events="{{ route('routeLoadEvents') }}"
+    data-route-update-events="{{ route('routeUpdateEvent') }}">
+</div>
 
     <div style='clear:both'></div>
 
@@ -42,6 +45,8 @@
 <script src='{{ asset('assets/fullcalendar/packages/timegrid/main.js') }}'></script>
 <script src='{{ asset('assets/fullcalendar/packages/list/main.js') }}'></script>
 <script src='{{ asset('assets/fullcalendar/packages/core/locales-all.js') }}'></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 <script src='{{ asset('assets/fullcalendar/js/script.js') }}'></script>
 <script src='{{ asset('assets/fullcalendar/js/style.js') }}'></script>
 </body>

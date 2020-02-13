@@ -39,18 +39,34 @@ document.addEventListener('DOMContentLoaded', function() {
             arg.draggedEl.parentNode.removeChild(arg.draggedEl);
             }
         },
-        eventDrop: function(event) {
-            alert('Event Drop');
+
+        eventDrop: function(element) {
+
+            let start = moment(element.event.start).format("YYYY-MM-DD HH:mm:ss");
+            let end = moment(element.event.end).format("YYYY-MM-DD HH:mm:ss");
+
+            let newEvent = {
+                _method: 'PUT',
+                id: element.event.id,
+                start: start,
+                end: end
+            };
+
+            sendEvent(routeEvents('routeUpdateEvent'),newEvent);
         },
+
         eventClick: function(event) {
             alert('Event Click');
         },
+
         eventResize: function(event) {
             alert('Event Resize');
         },
+
         select: function(event) {
             alert('Event Select');
         },
+
         events: routeEvents('routeLoadEvents'),
 
     });
