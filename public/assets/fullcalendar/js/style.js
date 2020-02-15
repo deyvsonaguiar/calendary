@@ -55,13 +55,23 @@ document.addEventListener('DOMContentLoaded', function() {
             sendEvent(routeEvents('routeUpdateEvent'),newEvent);
         },
 
-        eventClick: function(event) {
-            alert('Event Click');
+        eventResize: function(element) {
+            let start = moment(element.event.start).format("YYYY-MM-DD HH:mm:ss");
+            let end = moment(element.event.end).format("YYYY-MM-DD HH:mm:ss");
+
+            let newEvent = {
+                _method: 'PUT',
+                id: element.event.id,
+                start: start,
+                end: end
+            };
+
+            sendEvent(routeEvents('routeUpdateEvent'),newEvent);
         },
 
-        eventResize: function(event) {
-            alert('Event Resize');
-        },
+        eventClick: function(event) {
+            alert('Event Click');
+        },      
 
         select: function(event) {
             alert('Event Select');
