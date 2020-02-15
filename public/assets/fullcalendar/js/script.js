@@ -1,8 +1,6 @@
-function routeEvents(route) {
-    return document.getElementById('calendar').dataset[route];
-}
-
 $(function() {
+
+    $('.date-time').mask('00/00/0000 00:00:00');
 
     $.ajaxSetup({
         headers: {
@@ -26,4 +24,12 @@ function sendEvent(route, data_) {
         }
     });
 
+}
+
+function routeEvents(route) {
+    return document.getElementById('calendar').dataset[route];
+}
+
+function formReset(form) {
+    $(form)[0].reset();
 }

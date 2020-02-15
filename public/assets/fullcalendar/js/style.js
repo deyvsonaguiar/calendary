@@ -69,12 +69,51 @@ document.addEventListener('DOMContentLoaded', function() {
             sendEvent(routeEvents('routeUpdateEvent'),newEvent);
         },
 
-        eventClick: function(event) {
-            alert('Event Click');
-        },      
+        eventClick: function(element) {
 
-        select: function(event) {
-            alert('Event Select');
+            formReset("#formEvent");
+
+            $("#modalCalendar").modal('show');
+            $("#modalCalendar #titleModal").text('Alterar Evento');
+            $("#modalCalendar button.deleteEvent").css('display', 'flex');
+
+            let id = element.event.id;
+            $("#modalCalendar input[name='id']").val(id);
+
+            let title = element.event.title;
+            $("#modalCalendar input[name='title']").val(title);
+
+            let start = moment(element.event.start).format("DD/MM/YYYY HH:mm:ss");
+            $("#modalCalendar input[name='start']").val(start);
+
+            let end = moment(element.event.end).format("DD/MM/YYYY HH:mm:ss");
+            $("#modalCalendar input[name='end']").val(end);
+
+            let color = element.event.backgroundColor;
+            $("#modalCalendar input[name='color']").val(color);
+
+            let description = element.event.extendedProps.description;
+            $("#modalCalendar textarea[name='description']").val(description);
+        },
+
+        select: function(element) {
+
+            formReset("#formEvent");
+
+            $("#modalCalendar").modal('show');
+            $("#modalCalendar #titleModal").text('Criar Evento');
+            $("#modalCalendar button.deleteEvent").css('display', 'none');
+
+            let start = moment(element.start).format("DD/MM/YYYY HH:mm:ss");
+            $("#modalCalendar input[name='start']").val(start);
+
+            let end = moment(element.end).format("DD/MM/YYYY HH:mm:ss");
+            $("#modalCalendar input[name='end']").val(end);
+
+            let color = element.backgroundColor;
+            $("#modalCalendar input[name='color']").val('#3788D8');
+
+            calendar.unselect();
         },
 
         events: routeEvents('routeLoadEvents'),
