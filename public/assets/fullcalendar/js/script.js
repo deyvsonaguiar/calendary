@@ -57,6 +57,11 @@ function sendEvent(route, data_) {
                 if(json) {
                     location.reload();
                 }
+            },
+            error: function (json) {
+                let responseJSON = json.responseJSON.errors;
+
+                $("#message").html(loadErrors(responseJSON));
             }
         });
 
@@ -69,4 +74,20 @@ function routeEvents(route) {
 
 function formReset(form) {
     $(form)[0].reset();
+}
+
+function loadErrors(response) {
+    let boxAlert = `<div class="alert alert-danger">`;
+
+    for(let fields in response) {
+        boxAlert += `<span>${response[fields]}</span></br>`;
+    }
+
+    boxAlert += `</div>`;
+
+    return boxAlert.replace(/\,/g,"<br/>");
+}
+
+function clearMessages(element) {
+    $(element).text('');
 }

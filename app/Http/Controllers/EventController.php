@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Event;
-use Illuminate\Http\Request;
+use App\Http\Requests\EventRequest;
 
 class EventController extends Controller
 {
@@ -17,7 +17,7 @@ class EventController extends Controller
 
     }
 
-    public function store(Request $request)
+    public function store(EventRequest $request)
     {
         $event = Event::create($request->all());
 
@@ -25,7 +25,7 @@ class EventController extends Controller
 
     }
 
-    public function update(Request $request)
+    public function update(EventRequest $request)
     {
         $event = Event::where('id', $request->id)->first();
 
