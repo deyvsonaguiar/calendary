@@ -8,41 +8,57 @@ $(function() {
         }
 });
 
-    $(".saveEvent").click(function () {
+$(".deleteEvent").click(function () {
 
-        let id = $("#modalCalendar input[name='id']").val();;
+    let id = $("#modalCalendar input[name='id']").val();
 
-        let title = $("#modalCalendar input[name='title']").val();;
+    let event = {
+        id: id,
+        _method: 'DELETE'
+    };
 
-        let start = moment($("#modalCalendar input[name='start']").val(), "DD/MM/YYYY HH:mm:ss").format("YYYY-MM-DD HH:mm:ss");
+    let route = routeEvents('routeDeleteEvent');
 
-        let end = moment($("#modalCalendar input[name='end']").val(), "DD/MM/YYYY HH:mm:ss").format("YYYY-MM-DD HH:mm:ss");
+    sendEvent(route, event);
 
-        let color = $("#modalCalendar input[name='color']").val();
 
-        let description = $("#modalCalendar textarea[name='description']").val();
+});
 
-        let event = {
-            title: title,
-            start: start,
-            end: end,
-            color: color,
-            description: description,
-        };
+$(".saveEvent").click(function () {
 
-        let route;
+    let id = $("#modalCalendar input[name='id']").val();
 
-        if(id == '') {
-            route = routeEvents('routeStoreEvent');
-        } else {
-            route = routeEvents('routeUpdateEvent');
-            event.id = id;
-            event._method = 'PUT';
-        }
+    let title = $("#modalCalendar input[name='title']").val();;
 
-        sendEvent(route,event);
+    let start = moment($("#modalCalendar input[name='start']").val(), "DD/MM/YYYY HH:mm:ss").format("YYYY-MM-DD HH:mm:ss");
 
-    });
+    let end = moment($("#modalCalendar input[name='end']").val(), "DD/MM/YYYY HH:mm:ss").format("YYYY-MM-DD HH:mm:ss");
+
+    let color = $("#modalCalendar input[name='color']").val();
+
+    let description = $("#modalCalendar textarea[name='description']").val();
+
+    let event = {
+        title: title,
+        start: start,
+        end: end,
+        color: color,
+        description: description,
+    };
+
+    let route;
+
+    if(id == '') {
+        route = routeEvents('routeStoreEvent');
+    } else {
+        route = routeEvents('routeUpdateEvent');
+        event.id = id;
+        event._method = 'PUT';
+    }
+
+    sendEvent(route,event);
+
+});
 
 });
 

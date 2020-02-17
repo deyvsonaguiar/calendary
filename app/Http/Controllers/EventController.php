@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Event;
+use Illuminate\Http\Request;
 use App\Http\Requests\EventRequest;
 
 class EventController extends Controller
@@ -32,6 +33,13 @@ class EventController extends Controller
         $event->fill($request->all());
 
         $event->save();
+
+        return response()->json(true);
+    }
+
+    public function destroy(Request $request)
+    {
+        Event::where('id', $request->id)->delete();
 
         return response()->json(true);
     }
