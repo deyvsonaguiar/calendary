@@ -37,7 +37,8 @@
 
 <div id='calendar'
     data-route-load-events="{{ route('routeLoadEvents') }}"
-    data-route-update-events="{{ route('routeUpdateEvent') }}">
+    data-route-store-event="{{ route('routeStoreEvent') }}"
+    data-route-update-event="{{ route('routeUpdateEvent') }}">
 </div>
 
     <div style='clear:both'></div>

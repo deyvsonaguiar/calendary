@@ -62,8 +62,10 @@ document.addEventListener('DOMContentLoaded', function() {
             let newEvent = {
                 _method: 'PUT',
                 id: element.event.id,
+                title: element.event.title,
                 start: start,
-                end: end
+                end: end,
+                description: description,
             };
 
             sendEvent(routeEvents('routeUpdateEvent'),newEvent);
@@ -115,7 +117,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
             calendar.unselect();
         },
-
         events: routeEvents('routeLoadEvents'),
 
     });

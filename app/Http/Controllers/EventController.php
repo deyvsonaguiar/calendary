@@ -17,6 +17,14 @@ class EventController extends Controller
 
     }
 
+    public function store(Request $request)
+    {
+        $event = Event::create($request->all());
+
+        return response()->json(true);
+
+    }
+
     public function update(Request $request)
     {
         $event = Event::where('id', $request->id)->first();
