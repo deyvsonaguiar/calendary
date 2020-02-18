@@ -10,6 +10,9 @@ Route::post('store-event', 'EventController@store')->name('routeStoreEvent');
 
 Route::delete('delete-event', 'EventController@destroy')->name('routeDeleteEvent');
 
+Route::delete('fast-delete-event', 'FastEventController@destroy')->name('routeFastDeleteEvent');
+
+
 
 
 

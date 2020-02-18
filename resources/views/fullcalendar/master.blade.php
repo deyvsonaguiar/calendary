@@ -22,13 +22,19 @@
       <h4>Eventos Arrastáveis</h4>
 
       <div id='external-events-list'>
-        <div class='fc-event' data-event='{"id" : "99", "title" : "Teste", "color" : "#f2f2f2", "start" : "12:00:00", "end" : "12:30:00" }'>Teste</div>
-
+        @if($fastEvents)
+            @foreach ( $fastEvents as $fastEvent )
+                <div style="background-color: {{ $fastEvent->color }}; border: none"
+                class='fc-event' data-event='{ "id" : "{{ $fastEvent->id }}", "title" : "{{ $fastEvent->title }}", "color" : "{{ $fastEvent->color }}", "start" : "{{ $fastEvent->start }}", "end" : "{{ $fastEvent->end }}" }'>
+                    {{ $fastEvent->title }}
+                </div>
+            @endforeach
+        @endif
       </div>
 
       <p>
         <input type='checkbox' id='drop-remove' />
-        <label for='drop-remove'>remove after drop</label>
+        <label for='drop-remove'>remover após soltar</label>
       </p>
     </div>
 
@@ -36,7 +42,8 @@
     data-route-load-events="{{ route('routeLoadEvents') }}"
     data-route-store-event="{{ route('routeStoreEvent') }}"
     data-route-update-event="{{ route('routeUpdateEvent') }}"
-    data-route-delete-event="{{ route('routeDeleteEvent') }}">
+    data-route-delete-event="{{ route('routeDeleteEvent') }}"
+    data-route-fast-delete-event="{{ route('routeFastDeleteEvent') }}">
 </div>
 
     <div style='clear:both'></div>
