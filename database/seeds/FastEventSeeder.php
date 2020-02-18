@@ -14,13 +14,13 @@ class FastEventSeeder extends Seeder
     {
         DB::table('fast_events')->insert([
             [
-                'title' => 'Teste 1',
+                'title' => 'Evento 1',
                 'start' => '20:00',
                 'end' => '20:30',
                 'color' => '#19d37c'
             ],
             [
-                'title' => 'Teste 2',
+                'title' => 'Evento 2',
                 'start' => '18:30',
                 'end' => '20:00',
                 'color' => '#1979d3'

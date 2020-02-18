@@ -14,12 +14,14 @@
 <body>
 
     @include('fullcalendar.modal-calendar')
+    @include('fullcalendar.modal-fastEvent')
+
 
 
   <div id='wrap'>
 
     <div id='external-events'>
-      <h4>Eventos Arrastáveis</h4>
+      <h4>Eventos Rápidos</h4>
 
       <div id='external-events-list'>
         @if($fastEvents)
@@ -35,6 +37,7 @@
       <p>
         <input type='checkbox' id='drop-remove' />
         <label for='drop-remove'>remover após soltar</label>
+        <button class="btn btn-block btn-success" id="newFastEvent">Criar Evento</button>
       </p>
     </div>
 
@@ -43,7 +46,9 @@
     data-route-store-event="{{ route('routeStoreEvent') }}"
     data-route-update-event="{{ route('routeUpdateEvent') }}"
     data-route-delete-event="{{ route('routeDeleteEvent') }}"
-    data-route-fast-delete-event="{{ route('routeFastDeleteEvent') }}">
+    data-route-fast-delete-event="{{ route('routeFastDeleteEvent') }}"
+    data-route-fast-update-event="{{ route('routeFastUpdateEvent') }}"
+    data-route-fast-store-event="{{ route('routeFastStoreEvent') }}">
 </div>
 
     <div style='clear:both'></div>

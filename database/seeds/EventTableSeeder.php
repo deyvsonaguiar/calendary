@@ -23,7 +23,7 @@ class EventTableSeeder extends Seeder
             [
                 'title' => 'Ligar para cliente',
                 'start' => '2020-02-15',
-                'end' => '2020-02-15',
+                'end' => '2020-02-16',
                 'color' => '#1979d3',
                 'description' => 'Falar com o cliente'
             ],
