@@ -32,12 +32,26 @@ document.addEventListener('DOMContentLoaded', function() {
         selectable: true,
         editable: true,
         droppable: true, // this allows things to be dropped onto the calendar
-        drop: function(arg) {
+        drop: function(element) {
+
+            let Event = JSON.parse(element.draggedEl.dataset.event);
+
             // is the "remove after drop" checkbox checked?
             if (document.getElementById('drop-remove').checked) {
             // if so, remove the element from the "Draggable Events" list
-            arg.draggedEl.parentNode.removeChild(arg.draggedEl);
+            element.draggedEl.parentNode.removeChild(element.draggedEl);
             }
+
+            let start = moment(`${element.dateStr} ${Event.start}`).format("YYYY-MM-DD HH:mm:ss");
+            let end = moment(`${element.dateStr} ${Event.end}`).format("YYYY-MM-DD HH:mm:ss");
+
+            Event.start = start;
+            Event.end = end;
+
+            delete Event.id;
+
+            sendEvent(routeEvents('routeStoreEvent'),Event);
+
         },
 
         eventDrop: function(element) {
@@ -48,24 +62,9 @@ document.addEventListener('DOMContentLoaded', function() {
             let newEvent = {
                 _method: 'PUT',
                 id: element.event.id,
-                start: start,
-                end: end
-            };
-
-            sendEvent(routeEvents('routeUpdateEvent'),newEvent);
-        },
-
-        eventResize: function(element) {
-            let start = moment(element.event.start).format("YYYY-MM-DD HH:mm:ss");
-            let end = moment(element.event.end).format("YYYY-MM-DD HH:mm:ss");
-
-            let newEvent = {
-                _method: 'PUT',
-                id: element.event.id,
                 title: element.event.title,
                 start: start,
-                end: end,
-                description: description,
+                end: end
             };
 
             sendEvent(routeEvents('routeUpdateEvent'),newEvent);
@@ -97,6 +96,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
             let description = element.event.extendedProps.description;
             $("#modalCalendar textarea[name='description']").val(description);
+        },
+
+        eventResize: function(element) {
+            let start = moment(element.event.start).format("YYYY-MM-DD HH:mm:ss");
+            let end = moment(element.event.end).format("YYYY-MM-DD HH:mm:ss");
+
+            let newEvent = {
+                _method: 'PUT',
+                id: element.event.id,
+                title: element.event.title,
+                start: start,
+                end: end
+            };
+
+            sendEvent(routeEvents('routeUpdateEvent'),newEvent);
         },
 
         select: function(element) {

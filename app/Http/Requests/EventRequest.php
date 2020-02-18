@@ -27,7 +27,7 @@ class EventRequest extends FormRequest
 
             'title' => 'required|min:3',
             'start' => 'date_format:Y-m-d H:i:s|before:end',
-            'end' => 'date_format:Y-m-d H:i:s|after:end',
+            'end' => 'date_format:Y-m-d H:i:s|after:start',
         ];
     }
 

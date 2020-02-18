@@ -9,7 +9,7 @@
           </button>
         </div>
         <div class="modal-body">
-            <div id="message"></div>
+            <div class="message"></div>
             <form id="formEvent">
                 <div class="form-group">
                   <label for="title" class="col-form-label">Título:</label>

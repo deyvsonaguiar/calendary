@@ -75,9 +75,10 @@ function sendEvent(route, data_) {
                 }
             },
             error: function (json) {
+
                 let responseJSON = json.responseJSON.errors;
 
-                $("#message").html(loadErrors(responseJSON));
+                $(".message").html(loadErrors(responseJSON));
             }
         });
 
